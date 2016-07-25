@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+typedef void (^ResultBlock_t)(BOOL boolean);
+
 @interface CoreDataManager : NSObject
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
@@ -17,7 +19,8 @@
 
 + (instancetype)sharedInstance;
 
-- (void)saveContext;
+- (void)saveContextWithCompletion:(ResultBlock_t) completion;
+
 - (NSURL *)applicationDocumentsDirectory;
 
 @end

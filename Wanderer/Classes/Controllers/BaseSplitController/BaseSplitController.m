@@ -23,8 +23,9 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    masterViewController = (CollectionViewController*)[self.viewControllers[0] topViewController];
-    masterViewController.delegateController = self;
+    masterViewController = [self.viewControllers[0] topViewController];
+    if([masterViewController respondsToSelector:@selector(setDelegateController:)])
+        [masterViewController performSelector:@selector(setDelegateController:) withObject: self];
     detailViewController = self.viewControllers[1];
 }
 #pragma mark - UISplitViewControllerDelegate
@@ -50,5 +51,6 @@ collapseSecondaryViewController:(UIViewController *)secondaryViewController
 {
     [self showDetailViewController:detailViewController sender:self];
     [detailViewController setData:data];
+    detailViewController.dismissOnFavAddition = [masterViewController isKindOfClass:[TableViewController class]];
 }
 @end

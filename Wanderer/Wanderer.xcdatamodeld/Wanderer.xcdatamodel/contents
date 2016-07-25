@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15G31" minimumToolsVersion="Automatic">
     <entity name="PhotoModel" representedClassName="PhotoModel" syncable="YES">
+        <attribute name="isFavorite" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="ownerID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photoID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="photoThumbURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photoTitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="photoURL" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <fetchRequest name="FetchAllPhotos" entity="PhotoModel"/>
+    <fetchRequest name="FetchPhotosByFavorite" entity="PhotoModel" predicateString="isFavorite == 1"/>
     <elements>
-        <element name="PhotoModel" positionX="-54" positionY="54" width="128" height="30"/>
+        <element name="PhotoModel" positionX="-54" positionY="54" width="128" height="135"/>
     </elements>
 </model>

@@ -2,7 +2,7 @@
 //  PhotoModel+CoreDataProperties.m
 //  Wanderer
 //
-//  Created by Daniel on 24/7/16.
+//  Created by Daniel on 25/7/16.
 //  Copyright © 2016 Dan. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -13,9 +13,11 @@
 
 @implementation PhotoModel (CoreDataProperties)
 
-@dynamic photoID;
 @dynamic ownerID;
+@dynamic photoID;
 @dynamic photoTitle;
 @dynamic photoURL;
+@dynamic photoThumbURL;
+@dynamic isFavorite;
 
 @end

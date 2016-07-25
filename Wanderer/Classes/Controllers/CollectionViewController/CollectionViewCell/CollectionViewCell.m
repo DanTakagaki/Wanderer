@@ -24,6 +24,7 @@
 {
     [[BNRDynamicTypeManager sharedInstance] watchLabel:_titleLabel textStyle:UIFontTextStyleTitle1];
     [[BNRDynamicTypeManager sharedInstance] watchLabel:_subtitleLabel textStyle:UIFontTextStyleTitle2];
+    [[BNRDynamicTypeManager sharedInstance] watchButton:_addButton textStyle:UIFontTextStyleTitle2];
 }
 
 - (void)prepareForReuse
@@ -36,9 +37,29 @@
 
 - (void)setData:(PhotoModel *)data
 {
-    [_titleLabel setText:data.photoTitle];
-    [_subtitleLabel setText:data.photoID];
-    [_imageView sd_setImageWithURL:[NSURL URLWithString:data.photoURL]];
+    _data = data;
+    [self updateView];
 }
 
+- (void)updateView
+{
+    [_titleLabel setText:_data.photoTitle];
+    [_subtitleLabel setText:_data.photoID];
+    [_imageView sd_setImageWithURL:[NSURL URLWithString:_data.photoThumbURL]];
+    [_addButton setTitle:self.data.isFavorite?@"-":@"+" forState:UIControlStateNormal];
+}
+
+- (IBAction)onAddButtonTUI:(id)sender
+{
+    if([_addButton.titleLabel.text isEqualToString:@"+"]){
+        self.data.isFavorite = @(YES);
+    }else{
+        self.data.isFavorite = @(NO);
+    }
+    [[CoreDataManager sharedInstance] saveContextWithCompletion:^(BOOL boolean) {
+        if(boolean){
+            [self updateView];
+        }
+    }];
+}
 @end

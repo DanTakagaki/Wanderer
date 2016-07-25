@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 //typedef void (^VoidResultBlock_t)(void);
-//typedef void (^ErrorResultBlock_t)(NSError* error);
 typedef void (^CompletionBlock_t)(NSArray *response, NSError *error);
 
 @interface Service : NSObject

@@ -24,6 +24,7 @@
     [[BNRDynamicTypeManager sharedInstance] watchLabel:_titleLabel textStyle:UIFontTextStyleTitle1];
     [[BNRDynamicTypeManager sharedInstance] watchLabel:_subtitleLabel textStyle:UIFontTextStyleTitle2];
     [[BNRDynamicTypeManager sharedInstance] watchLabel:_descriptionLabel textStyle:UIFontTextStyleBody];
+    [[BNRDynamicTypeManager sharedInstance] watchButton:_addButton textStyle:UIFontTextStyleTitle2];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -34,14 +35,34 @@
 
 - (void)setData:(PhotoModel *)data
 {
-    [_titleLabel setText:data.photoTitle];
-    [_subtitleLabel setText:data.photoID];
-    [_imageView sd_setImageWithURL:[NSURL URLWithString:data.photoURL]];
-    [_descriptionLabel setText:data.ownerID];
+    _data = data;
+    [self updateView];
 }
 
-- (IBAction)onAddToFavButtonTUI:(id)sender
+- (void)updateView
 {
-    
+    [_titleLabel setText:_data.photoTitle];
+    [_subtitleLabel setText:_data.photoID];
+    [_imageView sd_setImageWithURL:[NSURL URLWithString:_data.photoURL]];
+    [_descriptionLabel setText:_data.ownerID];
+    [_addButton setTitle:self.data.isFavorite?@"-":@"+" forState:UIControlStateNormal];
+}
+
+- (IBAction)onAddButtonTUI:(id)sender
+{
+    if([_addButton.titleLabel.text isEqualToString:@"+"]){
+        self.data.isFavorite = @(YES);
+    }else{
+        self.data.isFavorite = @(NO);
+    }
+    [[CoreDataManager sharedInstance] saveContextWithCompletion:^(BOOL boolean) {
+        if(boolean){
+            [self updateView];
+            
+            if(_dismissOnFavAddition){
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }
+    }];
 }
 @end

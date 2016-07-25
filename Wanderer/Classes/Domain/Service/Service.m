@@ -44,18 +44,20 @@
             if (response) {
                 NSMutableArray *mutArray = [NSMutableArray new];
                 NSMutableDictionary *itDic;
+                NSURL *url;
                 for (NSDictionary *photoData in [response valueForKeyPath:@"photos.photo"]) {
                     itDic = [[NSMutableDictionary alloc]initWithDictionary:photoData];
-                    NSURL *url = [fk photoURLForSize:FKPhotoSizeSmall240 fromPhotoDictionary:photoData];
-                    if(url.absoluteString)[itDic setObject:url.absoluteString forKey:@"url"];
+                    url = [fk photoURLForSize:FKPhotoSizeSmall240 fromPhotoDictionary:photoData];
+                    if(url.absoluteString)[itDic setObject:url.absoluteString forKey:@"photoThumbURL"];
                     
+                    url = [fk photoURLForSize:FKPhotoSizeLarge1600 fromPhotoDictionary:photoData];
+                    if(url.absoluteString)[itDic setObject:url.absoluteString forKey:@"photoURL"];
+
                     PhotoModel *model = [[PhotoModel alloc] initWithDictionary:itDic];
                     [mutArray addObject: model];
                 }
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    // Any GUI related operations is passed to caller.
-                    completionBlock([NSArray arrayWithArray:mutArray],error);
-                });
+
+                completionBlock([NSArray arrayWithArray:mutArray],error);
             }
         }
     }];

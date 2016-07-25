@@ -16,8 +16,6 @@
     NSFetchedResultsController *_fetchedResultsController;
     BOOL _shouldReloadCollectionView;
     NSBlockOperation *_blockOperation;
-    
-    NSArray *_dataModels;
 }
 
 @property(nonatomic, assign) id<OnTapDelegate>delegateController;

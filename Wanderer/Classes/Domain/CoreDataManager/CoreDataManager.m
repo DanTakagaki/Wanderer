@@ -6,8 +6,6 @@
 //  Copyright © 2016 Dan. All rights reserved.
 //
 
-#import "CoreDataManager.h"
-
 @implementation CoreDataManager
 
 #pragma mark - Core Data stack
@@ -81,16 +79,19 @@
     return _managedObjectContext;
 }
 
-- (void)saveContext {
+#pragma mark - Core Data Saving support
+
+- (void)saveContextWithCompletion:(ResultBlock_t) completion
+{
     NSManagedObjectContext *managedObjectContext = self.managedObjectContext;
     if (managedObjectContext != nil) {
         NSError *error = nil;
-        if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-            // Replace this implementation with code to handle the error appropriately.
-            // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+        BOOL boolean = [managedObjectContext save:&error];
+        if (!boolean) {
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-            abort();
         }
+        
+        completion(boolean);
     }
 }
 

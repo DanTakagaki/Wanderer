@@ -7,7 +7,6 @@
 //
 
 #import "TableViewController.h"
-#import "CoreDataManager.h"
 #import "TableViewCell.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "PhotoModel+CoreDataProperties.h"
@@ -27,7 +26,9 @@
     self.tableView.dataSource = self;
     
     // Initialize Fetch Request
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:NSStringFromClass([PhotoModel class])];
+    CoreDataManager *coreDataM = [CoreDataManager sharedInstance];
+    NSFetchRequest* fetchRequest = [coreDataM.managedObjectModel fetchRequestFromTemplateWithName:@"FetchPhotosByFavorite"
+                                                                       substitutionVariables:@{@"isFavorite" : @(YES)}];
     
     // Add Sort Descriptors
     [fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"photoTitle" ascending:YES]]];
@@ -37,7 +38,17 @@
     
     // Configure Fetched Results Controller
     [_fetchedResultsController setDelegate:self];
-    
+}
+
+- (void)configureCell:(TableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
+    // Fetch Record
+    PhotoModel *model = (PhotoModel*)[_fetchedResultsController objectAtIndexPath:indexPath];
+    cell.data = model;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     // Perform Fetch
     NSError *error = nil;
     [_fetchedResultsController performFetch:&error];
@@ -48,15 +59,9 @@
     }
 }
 
-- (void)configureCell:(TableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath {
-    // Fetch Record
-    PhotoModel *model = (PhotoModel*)[_fetchedResultsController objectAtIndexPath:indexPath];
-    cell.data = model;
-}
+#pragma mark - UITableViewDataSource
 
-#pragma mark - UICollectionViewDataSource
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSArray *sections = [_fetchedResultsController sections];
     id<NSFetchedResultsSectionInfo> sectionInfo = [sections objectAtIndex:section];
@@ -74,12 +79,12 @@
     return cell;
 }
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return [[_fetchedResultsController sections] count];
 }
 
-#pragma mark - UICollectionViewDelegate
+#pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

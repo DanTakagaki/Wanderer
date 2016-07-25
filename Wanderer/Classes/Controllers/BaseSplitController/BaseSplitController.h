@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "CollectionViewcontroller.h"
 #import "DetailViewController.h"
+#import "TableViewController.h"
 #import "OnTapDelegate.h"
 
 @interface BaseSplitController : UISplitViewController <UISplitViewControllerDelegate,OnTapDelegate>
 {
-    CollectionViewController *masterViewController;
+    UIViewController *masterViewController;
     DetailViewController *detailViewController;
 }
 @end

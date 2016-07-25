@@ -7,26 +7,20 @@
 //
 
 #import "PhotoModel.h"
-#import "CoreDataManager.h"
 
 @implementation PhotoModel
 
 - (instancetype)initWithDictionary:(NSDictionary*)dic
 {
-    self = [super init];
+    self = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([PhotoModel class]) inManagedObjectContext:[[CoreDataManager sharedInstance] managedObjectContext]];
     
     self.photoID = dic[@"id"];
-    self.photoURL = dic[@"url"];
+    self.photoURL = dic[@"photoURL"];
+    self.photoThumbURL = dic[@"photoThumbURL"];
     self.photoTitle = dic[@"title"];
     self.ownerID = dic[@"owner"];
     
     return self;
 }
 
-+ (void)addEntity
-{
-    PhotoModel *model = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([PhotoModel class]) inManagedObjectContext:[[CoreDataManager sharedInstance] managedObjectContext]];
-    
-    
-}
 @end

@@ -17,9 +17,9 @@
     __weak IBOutlet UILabel *_titleLabel;
     __weak IBOutlet UILabel *_subtitleLabel;
     __weak IBOutlet UILabel *_descriptionLabel;
-    __weak IBOutlet UIButton *_addToFavButton;
+    __weak IBOutlet UIButton *_addButton;
 }
 
 @property (nonatomic, strong)PhotoModel *data;
-
+@property (nonatomic, assign)BOOL dismissOnFavAddition;
 @end
