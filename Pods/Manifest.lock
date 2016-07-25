@@ -1,0 +1,48 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - BNRDynamicTypeManager (0.1.0):
+    - BNRDynamicTypeManager/Controls (= 0.1.0)
+    - BNRDynamicTypeManager/Core (= 0.1.0)
+  - BNRDynamicTypeManager/Controls (0.1.0):
+    - BNRDynamicTypeManager/Core
+  - BNRDynamicTypeManager/Core (0.1.0)
+  - FlickrKit (1.0.8)
+  - MBProgressHUD (0.9.2)
+  - PureLayout (3.0.2)
+  - SDWebImage (3.8.1):
+    - SDWebImage/Core (= 3.8.1)
+  - SDWebImage/Core (3.8.1)
+
+DEPENDENCIES:
+  - AFNetworking
+  - BNRDynamicTypeManager
+  - FlickrKit
+  - MBProgressHUD
+  - PureLayout
+  - SDWebImage
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  BNRDynamicTypeManager: 44ee2970cd0120cbedd3dec84da41d0381525219
+  FlickrKit: beadf880a10ccaa2f13666d04112324fe08815e2
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
+  SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
+
+PODFILE CHECKSUM: 521567512251457b3f37c442d82f59b88efbf7f3
+
+COCOAPODS: 1.0.1
