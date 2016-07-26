@@ -11,6 +11,7 @@ pod 'SDWebImage'
 pod 'MBProgressHUD'
 pod 'FlickrKit'
 pod 'BNRDynamicTypeManager'
+pod 'SSPullToRefresh'
 
 end
 

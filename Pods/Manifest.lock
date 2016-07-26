@@ -26,6 +26,7 @@ PODS:
   - SDWebImage (3.8.1):
     - SDWebImage/Core (= 3.8.1)
   - SDWebImage/Core (3.8.1)
+  - SSPullToRefresh (1.2.4)
 
 DEPENDENCIES:
   - AFNetworking
@@ -34,6 +35,7 @@ DEPENDENCIES:
   - MBProgressHUD
   - PureLayout
   - SDWebImage
+  - SSPullToRefresh
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
@@ -42,7 +44,8 @@ SPEC CHECKSUMS:
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   PureLayout: 4d550abe49a94f24c2808b9b95db9131685fe4cd
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
+  SSPullToRefresh: 369e862c1d6528c7a354fc85cd4763d4e670e9af
 
-PODFILE CHECKSUM: 521567512251457b3f37c442d82f59b88efbf7f3
+PODFILE CHECKSUM: f0978d8a5e49dc188bdc38ec9cfbd3e005c8a72c
 
 COCOAPODS: 1.0.1

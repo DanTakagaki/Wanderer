@@ -10,11 +10,16 @@
 #import <CoreData/CoreData.h>
 #import "PhotoModel.h"
 #import "OnTapDelegate.h"
+#import "SSPullToRefresh.h"
 
-@interface CollectionViewController : UICollectionViewController <UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate>
-{    
-    NSArray *_dataArray;
-    UIRefreshControl *_refreshControl;
+@interface CollectionViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate,SSPullToRefreshViewDelegate>
+{
+    NSMutableArray *_dataArray;
+    NSMutableArray *_filteredTableData;
+    
+    BOOL _isFiltered;
+    
+    SSPullToRefreshView *_pullToRefreshView;
 }
 
 @property(nonatomic, assign) id<OnTapDelegate>delegateController;

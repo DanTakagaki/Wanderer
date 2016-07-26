@@ -26,6 +26,7 @@
 		655D9E8B1D452F3000A42E2D /* Service.m in Sources */ = {isa = PBXBuildFile; fileRef = 655D9E8A1D452F3000A42E2D /* Service.m */; };
 		655D9E921D45564A00A42E2D /* PhotoModel+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 655D9E8F1D45564A00A42E2D /* PhotoModel+CoreDataProperties.m */; };
 		655D9E931D45564A00A42E2D /* PhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 655D9E911D45564A00A42E2D /* PhotoModel.m */; };
+		659B762C1D471DFF00B1FE80 /* DPullToRefreshContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 659B762B1D471DFF00B1FE80 /* DPullToRefreshContentView.m */; };
 		65EC92951D46DB2D000648EB /* FlickrPhotoDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 65EC92941D46DB2D000648EB /* FlickrPhotoDTO.m */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,8 @@
 		655D9E901D45564A00A42E2D /* PhotoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoModel.h; sourceTree = "<group>"; };
 		655D9E911D45564A00A42E2D /* PhotoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoModel.m; sourceTree = "<group>"; };
 		655D9E941D459D8500A42E2D /* OnTapDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnTapDelegate.h; sourceTree = "<group>"; };
+		659B762A1D471DFF00B1FE80 /* DPullToRefreshContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DPullToRefreshContentView.h; path = PullToRefreshContent/DPullToRefreshContentView.h; sourceTree = "<group>"; };
+		659B762B1D471DFF00B1FE80 /* DPullToRefreshContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DPullToRefreshContentView.m; path = PullToRefreshContent/DPullToRefreshContentView.m; sourceTree = "<group>"; };
 		65EC92931D46DB2D000648EB /* FlickrPhotoDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlickrPhotoDTO.h; path = ModelsDTO/FlickrPhotoDTO.h; sourceTree = "<group>"; };
 		65EC92941D46DB2D000648EB /* FlickrPhotoDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlickrPhotoDTO.m; path = ModelsDTO/FlickrPhotoDTO.m; sourceTree = "<group>"; };
 		A898E4D505D96B20CB7B487A /* Pods-Wanderer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Wanderer.release.xcconfig"; path = "Pods/Target Support Files/Pods-Wanderer/Pods-Wanderer.release.xcconfig"; sourceTree = "<group>"; };
@@ -188,6 +191,7 @@
 		653FA0421D442365008E00FA /* Controls */ = {
 			isa = PBXGroup;
 			children = (
+				659B76291D471DCF00B1FE80 /* PulltoRefreshContent */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -279,6 +283,15 @@
 				655D9E8A1D452F3000A42E2D /* Service.m */,
 			);
 			name = Service;
+			sourceTree = "<group>";
+		};
+		659B76291D471DCF00B1FE80 /* PulltoRefreshContent */ = {
+			isa = PBXGroup;
+			children = (
+				659B762A1D471DFF00B1FE80 /* DPullToRefreshContentView.h */,
+				659B762B1D471DFF00B1FE80 /* DPullToRefreshContentView.m */,
+			);
+			name = PulltoRefreshContent;
 			sourceTree = "<group>";
 		};
 		65EC928F1D46DA6A000648EB /* ModelsDTO */ = {
@@ -427,6 +440,7 @@
 				655D9E7E1D447FF000A42E2D /* ArticleModel+CoreDataProperties.m in Sources */,
 				653FA05E1D445E09008E00FA /* CoreDataManager.m in Sources */,
 				65EC92951D46DB2D000648EB /* FlickrPhotoDTO.m in Sources */,
+				659B762C1D471DFF00B1FE80 /* DPullToRefreshContentView.m in Sources */,
 				653FA0671D446802008E00FA /* TableViewCell.m in Sources */,
 				653FA0621D44648D008E00FA /* CollectionViewCell.m in Sources */,
 				655D9E831D448B7500A42E2D /* BaseSplitController.m in Sources */,

@@ -12,6 +12,13 @@
 #import "PhotoModel+CoreDataProperties.h"
 #import "FlickrPhotoDTO.h"
 #import "CollectionViewCell.h"
+#import "DPullToRefreshContentView.h"
+
+@interface CollectionViewController()
+
+@property (nonatomic, strong) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, strong) IBOutlet UISearchBar *searchBar;
+@end
 
 @implementation CollectionViewController
 
@@ -27,16 +34,16 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     
-    _refreshControl = [[UIRefreshControl alloc] init];
-    [_refreshControl addTarget:self action:@selector(startRefresh)
-             forControlEvents:UIControlEventValueChanged];
-    [self.collectionView  addSubview:_refreshControl];
+    
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidLoad
 {
-    [super viewWillAppear:animated];
+    [super viewDidLoad];
     [self loadDataWithSpinner:YES];
+    
+    _pullToRefreshView = [[SSPullToRefreshView alloc] initWithScrollView:self.collectionView delegate:self];
+    _pullToRefreshView.contentView = [[DPullToRefreshContentView alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];
 }
 
 - (void)loadDataWithSpinner:(BOOL)boolean
@@ -46,34 +53,46 @@
     [[Service sharedInstance]fetchFlickrInterestingPhotosWithCompletion:^(NSArray *response, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.collectionView animated:YES];
-            [_refreshControl endRefreshing];
+            [_pullToRefreshView finishLoading];
+            if(!error){
+                _dataArray = [NSMutableArray arrayWithArray:response];
+                [self.collectionView reloadData];
+            }
         });
-        
-        if(!error){
-            _dataArray = [NSArray arrayWithArray:response];
-            [self.collectionView reloadData];
-        }
     }];
 }
 
-- (void)startRefresh
+#pragma mark -  SSPullToRefreshViewDelegate
+
+- (void)pullToRefreshViewDidStartLoading:(SSPullToRefreshView *)view
 {
     [self loadDataWithSpinner:NO];
 }
+
 
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [_dataArray count];
+    NSInteger rowCount;
+    if(_isFiltered)
+        rowCount = _filteredTableData.count;
+    else
+        rowCount = _dataArray.count;
+    
+    return rowCount;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CollectionViewCell" forIndexPath:indexPath];
+
+    FlickrPhotoDTO* model;
+    if(_isFiltered)
+        model = (FlickrPhotoDTO*)_filteredTableData[indexPath.row];
+    else
+        model = (FlickrPhotoDTO*)_dataArray[indexPath.row];
     
-    // Configure Table View Cell
-    FlickrPhotoDTO *model = (FlickrPhotoDTO*)_dataArray[indexPath.row];
     cell.data = model;
     
     return cell;
@@ -92,4 +111,31 @@
     }
 }
 
+#pragma mark - UISearchBarDelegate
+
+//user finished editing the search text
+-(void)searchBar:(UISearchBar*)searchBar textDidChange:(NSString*)text
+{
+    if(text.length == 0)
+    {
+        _isFiltered = NO;
+    }
+    else
+    {
+        _isFiltered = YES;
+        _filteredTableData = [[NSMutableArray alloc] init];
+        
+        for (FlickrPhotoDTO* modelDTO in _dataArray)
+        {
+            NSRange titleRange = [modelDTO.FKPhotoTitle rangeOfString:text options:NSCaseInsensitiveSearch];
+            NSRange descriptionRange = [modelDTO.FKPhotoOwnerID rangeOfString:text options:NSCaseInsensitiveSearch];
+            if(titleRange.location != NSNotFound || descriptionRange.location != NSNotFound)
+            {
+                [_filteredTableData addObject:modelDTO];
+            }
+        }
+    }
+    
+    [self.collectionView reloadData];
+}
 @end
