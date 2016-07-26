@@ -33,8 +33,6 @@
 {
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    
-    
 }
 
 - (void)viewDidLoad

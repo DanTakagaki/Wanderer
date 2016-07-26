@@ -46,8 +46,8 @@
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="K1I-KZ-F7W" userLabel="SubtitleLabel">
                                                         <rect key="frame" x="15" y="460" width="50" height="17"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mw9-DU-G4x">
@@ -57,6 +57,7 @@
                                                             <constraint firstAttribute="height" constant="50" id="NG3-xU-WS4"/>
                                                             <constraint firstAttribute="width" constant="50" id="Xpv-QE-9Iy"/>
                                                         </constraints>
+                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                         <state key="normal" title="+"/>
                                                         <connections>
                                                             <action selector="onAddButtonTUI:" destination="2rR-xM-Prl" eventType="touchUpInside" id="TP4-d3-gSW"/>
@@ -184,15 +185,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="179"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eqf-w2-mUr" userLabel="TitleLabel">
-                                            <rect key="frame" x="15" y="119" width="570" height="33"/>
+                                            <rect key="frame" x="15" y="117" width="570" height="33"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zGQ-la-fO4" userLabel="SubtitleLabel">
-                                            <rect key="frame" x="15" y="156" width="570" height="15"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <rect key="frame" x="15" y="154" width="570" height="17"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VxJ-Y5-zny" userLabel="AddButton">
@@ -202,6 +203,7 @@
                                                 <constraint firstAttribute="height" constant="50" id="0wQ-b7-a3d"/>
                                                 <constraint firstAttribute="width" constant="50" id="atZ-le-0bM"/>
                                             </constraints>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                             <state key="normal" title="+"/>
                                             <connections>
                                                 <action selector="onAddButtonTUI:" destination="hxa-8Z-jKL" eventType="touchUpInside" id="f9l-Px-gqA"/>
@@ -317,98 +319,6 @@
             <point key="canvasLocation" x="209" y="1039"/>
         </scene>
         <!--The World-->
-        <scene sceneID="CDP-aq-gKz">
-            <objects>
-                <collectionViewController id="6aZ-bG-NfN" customClass="CollectionViewController" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="aTh-ge-hp6">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="GY4-KB-jgV">
-                            <size key="itemSize" width="160" height="160"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                        <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCell" id="dM1-RC-p2a" customClass="CollectionViewCell">
-                                <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PnJ-az-5Q8">
-                                            <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xw9-M7-bnN" userLabel="TitleLabel">
-                                            <rect key="frame" x="15" y="111" width="130" height="18"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nx2-S3-jAl" userLabel="SubtitleLabel">
-                                            <rect key="frame" x="15" y="133" width="130" height="15"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fFC-iP-Was">
-                                            <rect key="frame" x="110" y="0.0" width="50" height="50"/>
-                                            <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="50" id="8Ua-Zq-zkl"/>
-                                                <constraint firstAttribute="width" constant="50" id="htG-pg-nxx"/>
-                                            </constraints>
-                                            <state key="normal" title="+"/>
-                                            <connections>
-                                                <action selector="onAddButtonTUI:" destination="dM1-RC-p2a" eventType="touchUpInside" id="tOe-7S-vNW"/>
-                                            </connections>
-                                        </button>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <constraints>
-                                    <constraint firstItem="Nx2-S3-jAl" firstAttribute="top" secondItem="Xw9-M7-bnN" secondAttribute="bottom" constant="4" id="22y-p8-VgC"/>
-                                    <constraint firstItem="Xw9-M7-bnN" firstAttribute="leading" secondItem="dM1-RC-p2a" secondAttribute="leadingMargin" constant="7" id="4CT-fS-Cvt"/>
-                                    <constraint firstItem="fFC-iP-Was" firstAttribute="trailing" secondItem="dM1-RC-p2a" secondAttribute="trailingMargin" constant="8" id="CQY-VY-yKM"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="PnJ-az-5Q8" secondAttribute="trailing" constant="-8" id="DiC-sU-NVn"/>
-                                    <constraint firstItem="PnJ-az-5Q8" firstAttribute="leading" secondItem="dM1-RC-p2a" secondAttribute="leadingMargin" constant="-8" id="EzC-AI-fdq"/>
-                                    <constraint firstItem="PnJ-az-5Q8" firstAttribute="top" secondItem="dM1-RC-p2a" secondAttribute="topMargin" constant="-8" id="KZi-kv-uqn"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="Nx2-S3-jAl" secondAttribute="bottom" constant="4" id="MAh-ep-Ofu"/>
-                                    <constraint firstItem="fFC-iP-Was" firstAttribute="top" secondItem="dM1-RC-p2a" secondAttribute="topMargin" constant="-8" id="NKd-wP-t5h"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="Xw9-M7-bnN" secondAttribute="trailing" constant="7" id="XkU-tR-oBn"/>
-                                    <constraint firstItem="Nx2-S3-jAl" firstAttribute="leading" secondItem="dM1-RC-p2a" secondAttribute="leadingMargin" constant="7" id="hxI-he-21S"/>
-                                    <constraint firstItem="Nx2-S3-jAl" firstAttribute="top" secondItem="Xw9-M7-bnN" secondAttribute="bottom" constant="7" id="j0g-Ky-q9M"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="PnJ-az-5Q8" secondAttribute="bottom" constant="-8" id="tWs-6f-bPw"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="Nx2-S3-jAl" secondAttribute="trailing" constant="7" id="xVL-l3-S09"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="j0g-Ky-q9M"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <outlet property="_addButton" destination="fFC-iP-Was" id="5L1-Ph-vkw"/>
-                                    <outlet property="_imageView" destination="PnJ-az-5Q8" id="9Eo-sq-kv2"/>
-                                    <outlet property="_subtitleLabel" destination="Nx2-S3-jAl" id="PDF-Pd-rfU"/>
-                                    <outlet property="_titleLabel" destination="Xw9-M7-bnN" id="c0i-Lo-r0T"/>
-                                </connections>
-                            </collectionViewCell>
-                        </cells>
-                        <connections>
-                            <outlet property="dataSource" destination="6aZ-bG-NfN" id="cGP-1s-AVd"/>
-                            <outlet property="delegate" destination="6aZ-bG-NfN" id="IqY-yl-YNN"/>
-                        </connections>
-                    </collectionView>
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                    <navigationItem key="navigationItem" title="The World" id="aQQ-pF-ZKY"/>
-                </collectionViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="gGg-Eb-yvT" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="919" y="1039"/>
-        </scene>
-        <!--The World-->
         <scene sceneID="YYg-I9-TbJ">
             <objects>
                 <viewController id="a0t-y4-kro" customClass="CollectionViewController" sceneMemberID="viewController">
@@ -423,14 +333,14 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="D2H-2j-tor">
                                 <rect key="frame" x="0.0" y="44" width="600" height="443"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="3LM-ki-RjT">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="3LM-ki-RjT">
                                     <size key="itemSize" width="160" height="160"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCell" id="CV8-di-cLv" customClass="CollectionViewCell">
+                                    <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCell" id="CV8-di-cLv" customClass="CollectionViewCell">
                                         <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -440,16 +350,16 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="biF-v0-mFK">
                                                     <rect key="frame" x="0.0" y="0.0" width="160" height="160"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dXo-3R-XRe" userLabel="TitleLabel">
-                                                    <rect key="frame" x="15" y="111" width="130" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="dXo-3R-XRe" userLabel="TitleLabel">
+                                                    <rect key="frame" x="15" y="107" width="130" height="20"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I6n-YM-YyH" userLabel="SubtitleLabel">
-                                                    <rect key="frame" x="15" y="133" width="130" height="15"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="I6n-YM-YyH" userLabel="SubtitleLabel">
+                                                    <rect key="frame" x="15" y="131" width="130" height="17"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u9d-3l-oCB">
@@ -459,6 +369,7 @@
                                                         <constraint firstAttribute="width" constant="50" id="DdJ-8u-2d7"/>
                                                         <constraint firstAttribute="height" constant="50" id="oiK-dP-DSz"/>
                                                     </constraints>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                     <state key="normal" title="+"/>
                                                     <connections>
                                                         <action selector="onAddButtonTUI:" destination="CV8-di-cLv" eventType="touchUpInside" id="7RA-KD-X25"/>
@@ -467,6 +378,7 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="biF-v0-mFK" firstAttribute="leading" secondItem="CV8-di-cLv" secondAttribute="leadingMargin" constant="-8" id="1df-ab-0ox"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="dXo-3R-XRe" secondAttribute="trailing" constant="7" id="9KV-3G-Qsa"/>
