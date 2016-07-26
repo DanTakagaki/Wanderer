@@ -12,10 +12,9 @@
 #import "OnTapDelegate.h"
 
 @interface CollectionViewController : UICollectionViewController <UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate>
-{
-    NSFetchedResultsController *_fetchedResultsController;
-    BOOL _shouldReloadCollectionView;
-    NSBlockOperation *_blockOperation;
+{    
+    NSArray *_dataArray;
+    UIRefreshControl *_refreshControl;
 }
 
 @property(nonatomic, assign) id<OnTapDelegate>delegateController;

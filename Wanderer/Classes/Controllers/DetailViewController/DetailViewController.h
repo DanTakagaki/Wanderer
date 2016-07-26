@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PhotoModel+CoreDataProperties.h"
+#import "FlickrPhotoDTO.h"
 
 @interface DetailViewController : UIViewController
 {
@@ -20,6 +21,6 @@
     __weak IBOutlet UIButton *_addButton;
 }
 
-@property (nonatomic, strong)PhotoModel *data;
+@property (nonatomic, strong)FlickrPhotoDTO *data;
 @property (nonatomic, assign)BOOL dismissOnFavAddition;
 @end

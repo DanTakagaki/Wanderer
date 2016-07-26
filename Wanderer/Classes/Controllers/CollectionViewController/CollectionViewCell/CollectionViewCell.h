@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PhotoModel+CoreDataProperties.h"
+#import "FlickrPhotoDTO.h"
 
 @interface CollectionViewCell : UICollectionViewCell
 {
@@ -17,6 +18,6 @@
     __weak IBOutlet UIButton *_addButton;
 }
 
-@property (nonatomic, strong)PhotoModel *data;
+@property (nonatomic, assign) FlickrPhotoDTO *data;
 
 @end

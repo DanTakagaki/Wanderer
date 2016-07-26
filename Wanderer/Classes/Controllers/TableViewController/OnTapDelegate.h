@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PhotoModel.h"
+#import "FlickrPhotoDTO.h"
 
 @protocol OnTapDelegate <NSObject>
 @optional
-- (void)didPressCellWithData:(PhotoModel*)data;
+- (void)didPressCellWithData:(FlickrPhotoDTO*)data;
 
 @end
 

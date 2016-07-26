@@ -6,6 +6,8 @@
 //  Copyright © 2016 Dan. All rights reserved.
 //
 
+#import "PhotoModel+CoreDataProperties.h"
+
 @implementation CoreDataManager
 
 #pragma mark - Core Data stack
@@ -13,11 +15,11 @@
 + (instancetype)sharedInstance
 {
     static dispatch_once_t once;
-    static CoreDataManager *sharedInstance;
+    static CoreDataManager *sharedInstanceCD;
     dispatch_once(&once, ^{
-        sharedInstance = [CoreDataManager new];
+        sharedInstanceCD = [CoreDataManager new];
     });
-    return sharedInstance;
+    return sharedInstanceCD;
 }
 
 - (NSURL *)applicationDocumentsDirectory {
@@ -79,6 +81,51 @@
     return _managedObjectContext;
 }
 
+- (void)insertNewObjectWithDataDTO:(FlickrPhotoDTO*)modelDTO withResult:(ResultBlock_t) completion
+{
+    [self existObjectWithDataDTO:modelDTO withResult:^(BOOL boolean, NSError *error) {
+        if(!error && !boolean){
+            [PhotoModel insertNewObjectWithDataDTO:modelDTO];
+            [self saveContextWithCompletion:^(BOOL boolean, NSError* error) {
+                completion(boolean,error);
+            }];
+        }
+    }];
+    
+}
+
+- (void)deleteObjectWithID:(NSString*)modelID withResult:(ResultBlock_t) completion
+{
+    NSFetchRequest* request = [self.managedObjectModel fetchRequestFromTemplateWithName:@"FetchPhotoByID"
+                                                                            substitutionVariables:@{@"PHOTO_ID" : modelID}];
+    
+    NSError* error = nil;
+    NSArray* results = [self.managedObjectContext executeFetchRequest:request error:&error];
+    
+    if(error){
+        completion(NO, error);
+    }else{
+        for (PhotoModel *itObj in results) {
+            [[self managedObjectContext] deleteObject:itObj];
+        }
+        
+        [self saveContextWithCompletion:^(BOOL boolean, NSError *error) {
+            completion(boolean, error);
+        }];
+    }
+}
+
+- (void)existObjectWithDataDTO:(FlickrPhotoDTO*)modelDTO withResult:(ResultBlock_t) completion
+{
+    NSFetchRequest* request = [self.managedObjectModel fetchRequestFromTemplateWithName:@"FetchPhotoByID"
+                                                                  substitutionVariables:@{@"PHOTO_ID" : modelDTO.FKPhotoID}];
+    
+    NSError* error = nil;
+    NSArray* results = [self.managedObjectContext executeFetchRequest:request error:&error];
+
+    completion([results count]>0, error);
+}
+
 #pragma mark - Core Data Saving support
 
 - (void)saveContextWithCompletion:(ResultBlock_t) completion
@@ -91,44 +138,8 @@
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         }
         
-        completion(boolean);
+        completion(boolean,error);
     }
 }
-
-/*- (IBAction)findContact:(id)sender {
- CoreDataAppDelegate *appDelegate =
- [[UIApplication sharedApplication] delegate];
- 
- NSManagedObjectContext *context =
- [appDelegate managedObjectContext];
- 
- NSEntityDescription *entityDesc =
- [NSEntityDescription entityForName:@"Contacts"
- inManagedObjectContext:context];
- 
- NSFetchRequest *request = [[NSFetchRequest alloc] init];
- [request setEntity:entityDesc];
- 
- NSPredicate *pred =
- [NSPredicate predicateWithFormat:@"(name = %@)",
- _name.text];
- [request setPredicate:pred];
- NSManagedObject *matches = nil;
- 
- NSError *error;
- NSArray *objects = [context executeFetchRequest:request
- error:&error];
- 
- if ([objects count] == 0) {
- _status.text = @"No matches";
- } else {
- matches = objects[0];
- _address.text = [matches valueForKey:@"address"];
- _phone.text = [matches valueForKey:@"phone"];
- _status.text = [NSString stringWithFormat:
- @"%lu matches found", (unsigned long)[objects count]];
- }
- }
- */
 
 @end

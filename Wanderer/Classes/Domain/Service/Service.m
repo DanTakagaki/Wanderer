@@ -9,6 +9,7 @@
 #import "Service.h"
 #import "FlickrKit.h"
 #import "PhotoModel+CoreDataProperties.h"
+#import "FlickrPhotoDTO.h"
 
 @implementation Service
 
@@ -53,7 +54,8 @@
                     url = [fk photoURLForSize:FKPhotoSizeLarge1600 fromPhotoDictionary:photoData];
                     if(url.absoluteString)[itDic setObject:url.absoluteString forKey:@"photoURL"];
 
-                    PhotoModel *model = [[PhotoModel alloc] initWithDictionary:itDic];
+                    FlickrPhotoDTO *model = [[FlickrPhotoDTO alloc] initWithDictionary:itDic];
+                    //PhotoModel *model = [[PhotoModel alloc] initWithDictionary:itDic];
                     [mutArray addObject: model];
                 }
 

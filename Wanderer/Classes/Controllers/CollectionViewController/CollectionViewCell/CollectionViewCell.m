@@ -35,31 +35,44 @@
     [_imageView setImage:nil];
 }
 
-- (void)setData:(PhotoModel *)data
+- (void)setData:(FlickrPhotoDTO *)data
 {
     _data = data;
+    [[CoreDataManager sharedInstance] existObjectWithDataDTO:_data withResult:^(BOOL boolean, NSError *error) {
+        _data.FKPhotoIsFavorite = boolean;
+    }];
     [self updateView];
 }
 
 - (void)updateView
 {
-    [_titleLabel setText:_data.photoTitle];
-    [_subtitleLabel setText:_data.photoID];
-    [_imageView sd_setImageWithURL:[NSURL URLWithString:_data.photoThumbURL]];
-    [_addButton setTitle:self.data.isFavorite?@"-":@"+" forState:UIControlStateNormal];
+    [_titleLabel setText:_data.FKPhotoTitle];
+    [_subtitleLabel setText:_data.FKPhotoID];
+    [_imageView sd_setImageWithURL:[NSURL URLWithString:_data.FKPhotoThumbURL]];
+    [[CoreDataManager sharedInstance] existObjectWithDataDTO:_data withResult:^(BOOL boolean, NSError *error) {
+        [_addButton setTitle:_data.FKPhotoIsFavorite?@"-":@"+" forState:UIControlStateNormal];
+    }];
 }
 
 - (IBAction)onAddButtonTUI:(id)sender
 {
-    if([_addButton.titleLabel.text isEqualToString:@"+"]){
-        self.data.isFavorite = @(YES);
+    _addButton.enabled = NO;
+    
+    if(!_data.FKPhotoIsFavorite){
+        [[CoreDataManager sharedInstance] insertNewObjectWithDataDTO:_data withResult:^(BOOL boolean, NSError *error) {
+            if(!error){
+                _data.FKPhotoIsFavorite = YES;
+                [self updateView];
+            }
+            _addButton.enabled = YES;
+        }];
+        
     }else{
-        self.data.isFavorite = @(NO);
-    }
-    [[CoreDataManager sharedInstance] saveContextWithCompletion:^(BOOL boolean) {
-        if(boolean){
+        [[CoreDataManager sharedInstance] deleteObjectWithID:_data.FKPhotoID withResult:^(BOOL boolean, NSError *error) {
+            _addButton.enabled = YES;
+            _data.FKPhotoIsFavorite = NO;
             [self updateView];
-        }
-    }];
+        }];
+    }
 }
 @end

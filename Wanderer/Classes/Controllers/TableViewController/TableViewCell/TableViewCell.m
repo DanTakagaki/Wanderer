@@ -46,20 +46,15 @@
     [_titleLabel setText:_data.photoTitle];
     [_subtitleLabel setText:_data.photoID];
     [_cellImageView sd_setImageWithURL:[NSURL URLWithString:_data.photoThumbURL]];
-    [_addButton setTitle:self.data.isFavorite?@"-":@"+" forState:UIControlStateNormal];
+    [_addButton setTitle:@"-" forState:UIControlStateNormal];
 }
 
 - (IBAction)onAddButtonTUI:(id)sender
 {
-    if([_addButton.titleLabel.text isEqualToString:@"+"]){
-        self.data.isFavorite = @(YES);
-    }else{
-        self.data.isFavorite = @(NO);
-    }
-    [[CoreDataManager sharedInstance] saveContextWithCompletion:^(BOOL boolean) {
-        if(boolean){
-            [self updateView];
-        }
+    _addButton.enabled = NO;
+    
+    [[CoreDataManager sharedInstance] deleteObjectWithID:_data.photoID withResult:^(BOOL boolean, NSError *error) {
+        _addButton.enabled = YES;
     }];
 }
 

@@ -52,6 +52,7 @@
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mw9-DU-G4x">
                                                         <rect key="frame" x="550" y="0.0" width="50" height="50"/>
+                                                        <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="50" id="NG3-xU-WS4"/>
                                                             <constraint firstAttribute="width" constant="50" id="Xpv-QE-9Iy"/>
@@ -196,6 +197,7 @@
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VxJ-Y5-zny" userLabel="AddButton">
                                             <rect key="frame" x="550" y="0.0" width="50" height="50"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="0wQ-b7-a3d"/>
                                                 <constraint firstAttribute="width" constant="50" id="atZ-le-0bM"/>
@@ -353,6 +355,7 @@
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fFC-iP-Was">
                                             <rect key="frame" x="110" y="0.0" width="50" height="50"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="8Ua-Zq-zkl"/>
                                                 <constraint firstAttribute="width" constant="50" id="htG-pg-nxx"/>

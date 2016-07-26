@@ -47,7 +47,7 @@ collapseSecondaryViewController:(UIViewController *)secondaryViewController
 
 #pragma mark - CollectionViewControllerDelegate
 
-- (void)didPressCellWithData:(PhotoModel *)data
+- (void)didPressCellWithData:(FlickrPhotoDTO *)data
 {
     [self showDetailViewController:detailViewController sender:self];
     [detailViewController setData:data];

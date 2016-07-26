@@ -91,7 +91,7 @@
     
     if(_delegateController && [_delegateController respondsToSelector:@selector(didPressCellWithData:)]){
         PhotoModel *model = (PhotoModel*)[_fetchedResultsController objectAtIndexPath:indexPath];
-        [_delegateController didPressCellWithData:model];
+        [_delegateController didPressCellWithData:[model objectToDataDTO]];
     }
 }
 

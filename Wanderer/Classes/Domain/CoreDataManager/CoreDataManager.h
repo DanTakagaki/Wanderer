@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "FlickrPhotoDTO.h"
 
-typedef void (^ResultBlock_t)(BOOL boolean);
+typedef void (^ResultBlock_t)(BOOL boolean , NSError* error);
 
 @interface CoreDataManager : NSObject
 
@@ -22,5 +23,7 @@ typedef void (^ResultBlock_t)(BOOL boolean);
 - (void)saveContextWithCompletion:(ResultBlock_t) completion;
 
 - (NSURL *)applicationDocumentsDirectory;
-
+- (void)insertNewObjectWithDataDTO:(FlickrPhotoDTO*)modelDTO withResult:(ResultBlock_t) completion;
+- (void)deleteObjectWithID:(NSString*)modelID withResult:(ResultBlock_t) completion;
+- (void)existObjectWithDataDTO:(FlickrPhotoDTO*)modelDTO withResult:(ResultBlock_t) completion;
 @end

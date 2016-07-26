@@ -23,4 +23,29 @@
     return self;
 }
 
++ (instancetype)insertNewObjectWithDataDTO:(FlickrPhotoDTO*)dataDTO
+{
+    PhotoModel *model = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass([PhotoModel class]) inManagedObjectContext:[[CoreDataManager sharedInstance] managedObjectContext]];
+    
+    model.photoID = dataDTO.FKPhotoID;
+    model.photoURL = dataDTO.FKPhotoURL;
+    model.photoThumbURL = dataDTO.FKPhotoThumbURL;
+    model.photoTitle = dataDTO.FKPhotoTitle;
+    model.ownerID = dataDTO.FKPhotoOwnerID;
+    
+    return model;
+}
+
+- (FlickrPhotoDTO*)objectToDataDTO
+{
+    FlickrPhotoDTO *model = [FlickrPhotoDTO new];
+    
+    model.FKPhotoID = self.photoID;
+    model.FKPhotoURL = self.photoURL;
+    model.FKPhotoThumbURL = self.photoThumbURL;
+    model.FKPhotoTitle = self.photoTitle;
+    model.FKPhotoOwnerID = self.ownerID;
+    
+    return model;
+}
 @end

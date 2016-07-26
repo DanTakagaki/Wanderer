@@ -8,13 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "FlickrPhotoDTO.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PhotoModel : NSManagedObject
 
-- (instancetype)initWithDictionary:(NSDictionary*)dic;
++ (instancetype)insertNewObjectWithDataDTO:(FlickrPhotoDTO*)dataDTO;
 
+- (instancetype)initWithDictionary:(NSDictionary*)dic;
+- (FlickrPhotoDTO*)objectToDataDTO;
 @end
 
 NS_ASSUME_NONNULL_END
