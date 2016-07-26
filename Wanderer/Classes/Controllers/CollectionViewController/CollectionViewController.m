@@ -18,6 +18,10 @@
 
 @property (nonatomic, strong) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) IBOutlet UISearchBar *searchBar;
+
+@property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) NSMutableArray *filteredArray;
+
 @end
 
 @implementation CollectionViewController
@@ -60,6 +64,22 @@
     }];
 }
 
+- (NSArray *)getFilteredData
+{
+    NSArray *newDataArray;
+    if(_isFiltered){
+        newDataArray = [NSMutableArray arrayWithArray: _filteredArray];
+    }else{
+        newDataArray = [NSMutableArray arrayWithArray: _dataArray];
+    }
+    
+    if(_orderAlphabetically){
+        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"FKPhotoTitle" ascending:YES selector:@selector(caseInsensitiveCompare:)];
+        newDataArray = [[NSArray arrayWithArray:newDataArray] sortedArrayUsingDescriptors:@[sort]];
+    }
+    return newDataArray;
+}
+
 #pragma mark -  SSPullToRefreshViewDelegate
 
 - (void)pullToRefreshViewDidStartLoading:(SSPullToRefreshView *)view
@@ -72,24 +92,14 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    NSInteger rowCount;
-    if(_isFiltered)
-        rowCount = _filteredTableData.count;
-    else
-        rowCount = _dataArray.count;
-    
-    return rowCount;
+    return  [self getFilteredData].count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     CollectionViewCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CollectionViewCell" forIndexPath:indexPath];
 
-    FlickrPhotoDTO* model;
-    if(_isFiltered)
-        model = (FlickrPhotoDTO*)_filteredTableData[indexPath.row];
-    else
-        model = (FlickrPhotoDTO*)_dataArray[indexPath.row];
+    FlickrPhotoDTO* model = (FlickrPhotoDTO*)[self getFilteredData][indexPath.row];
     
     cell.data = model;
     
@@ -104,7 +114,7 @@
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
     
     if(_delegateController && [_delegateController respondsToSelector:@selector(didPressCellWithData:)]){
-        FlickrPhotoDTO *model = (FlickrPhotoDTO*)_dataArray[indexPath.row];
+        FlickrPhotoDTO *model = (FlickrPhotoDTO*)[self getFilteredData][indexPath.row];
         [_delegateController didPressCellWithData:model];
     }
 }
@@ -121,7 +131,7 @@
     else
     {
         _isFiltered = YES;
-        _filteredTableData = [[NSMutableArray alloc] init];
+        _filteredArray = [[NSMutableArray alloc] init];
         
         for (FlickrPhotoDTO* modelDTO in _dataArray)
         {
@@ -129,10 +139,16 @@
             NSRange descriptionRange = [modelDTO.FKPhotoOwnerID rangeOfString:text options:NSCaseInsensitiveSearch];
             if(titleRange.location != NSNotFound || descriptionRange.location != NSNotFound)
             {
-                [_filteredTableData addObject:modelDTO];
+                [_filteredArray addObject:modelDTO];
             }
         }
     }
+    
+    [self.collectionView reloadData];
+}
+
+- (IBAction)onRightItemTUI:(id)sender{
+    _orderAlphabetically = !_orderAlphabetically;
     
     [self.collectionView reloadData];
 }

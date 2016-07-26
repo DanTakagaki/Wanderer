@@ -14,10 +14,8 @@
 
 @interface CollectionViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource, NSFetchedResultsControllerDelegate,SSPullToRefreshViewDelegate>
 {
-    NSMutableArray *_dataArray;
-    NSMutableArray *_filteredTableData;
-    
     BOOL _isFiltered;
+    BOOL _orderAlphabetically;
     
     SSPullToRefreshView *_pullToRefreshView;
 }
